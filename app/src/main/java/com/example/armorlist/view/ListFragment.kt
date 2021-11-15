@@ -27,6 +27,14 @@ class ListFragment : Fragment() {
         viewModel = (activity as MainActivity).viewModel
         
         viewModel.updateActionBarTitle(requireContext().getString(R.string.list_fragment_label))
+
+        //fetch data from API
+        viewModel.getArmorListFromAPI()
+
+        // observe API response and populate recycler view
+        viewModel.armorList.observe(viewLifecycleOwner, { list ->
+            println(list)
+        })
     }
 
 }
