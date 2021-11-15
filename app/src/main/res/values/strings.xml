@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ArmorList</string>
+    <string name="list_fragment_label">List of Armor</string>
+    <string name="sv_hint">Filter armor</string>
+    <string name="rank_label_text">rank:</string>
+    <string name="defense_label_text">base defense:</string>
+    <string name="slot_label_text"># of decoration slots:</string>
+</resources>
