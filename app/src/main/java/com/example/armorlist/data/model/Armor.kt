@@ -9,7 +9,7 @@ data class Armor(
     val attributes: Attributes?,
     val crafting: Crafting?,
     val defense: Defense?,
-    val id: Int?,
+    val id: Int,
     val name: String?,
     val rank: String?,
     val rarity: Int?,

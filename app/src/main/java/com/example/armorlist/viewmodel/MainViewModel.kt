@@ -20,8 +20,11 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
 
     fun updateActionBarTitle(title: String) = _title.postValue(title)
 
-    // observe list of armor
+    // keep original fetched list to be able to restore on clear filters
+    private val _originalArmorList = MutableLiveData<List<Armor>>()
     private val _armorList = MutableLiveData<List<Armor>>()
+
+    // observe list of armor
     val armorList: LiveData<List<Armor>> = _armorList
     fun getArmorListFromAPI() {
         Log.i(LOG_TAG, "Fetching from API...")
@@ -30,9 +33,62 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
             val apiResult = repository.getArmorList()
             if (apiResult.isSuccessful) {
                 _armorList.postValue(apiResult.body())
+                _originalArmorList.postValue(apiResult.body())
                 _loading.postValue(false)
             }
         }
+    }
+
+    fun filterArmorList(query: String) {
+        _loading.value = true
+        // hold filtered items
+        val filteredList = arrayListOf<Armor>()
+
+        // hold id of added filtered items in set to avoid duplicates
+        val listOfAddedItemsId = mutableSetOf<Int>()
+
+        // run in background in case the list is too long
+        viewModelScope.launch(Dispatchers.Default) {
+            _originalArmorList.value?.forEach { armorItem ->
+
+                // filter by name and check if this item is already added to filtered list
+                armorItem.name?.let { name ->
+                    if (name.contains(query, ignoreCase = true) &&
+                        !listOfAddedItemsId.contains(armorItem.id)
+                    ) {
+                        filteredList.add(armorItem)
+                        listOfAddedItemsId.add(armorItem.id)
+                    }
+                }
+
+                // filter by rank and check if this item is already added to filtered list
+                armorItem.rank?.let { rank ->
+                    if (rank.contains(query, ignoreCase = true) &&
+                        !listOfAddedItemsId.contains(armorItem.id)
+                    ) {
+                        filteredList.add(armorItem)
+                        listOfAddedItemsId.add(armorItem.id)
+                    }
+                }
+
+                // filter by base defense value and check if this item is already added to filtered list
+                armorItem.defense?.base?.let { defense ->
+                    if (defense.toString().contains(query, ignoreCase = true) &&
+                        !listOfAddedItemsId.contains(armorItem.id)
+                    ) {
+                        filteredList.add(armorItem)
+                        listOfAddedItemsId.add(armorItem.id)
+                    }
+                }
+            }
+            _armorList.postValue(filteredList)
+            _loading.postValue(false)
+        }
+    }
+
+    // restore with the original list
+    fun resetFilterArmorList() {
+        _armorList.value = _originalArmorList.value
     }
 
 
