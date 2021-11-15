@@ -40,6 +40,17 @@ class ListFragment : Fragment() {
             viewModel.getArmorListFromAPI()
         }
 
+        // observe loading state to show/hide progress bar
+        viewModel.loading.observe(viewLifecycleOwner, {
+            if (it) {
+                binding.progressBar.visibility = View.VISIBLE
+                binding.rv.visibility = View.GONE
+            } else {
+                binding.progressBar.visibility = View.GONE
+                binding.rv.visibility = View.VISIBLE
+            }
+        })
+
         // observe API response and populate recycler view
         viewModel.armorList.observe(viewLifecycleOwner, { list ->
             // populate recycler view with data
