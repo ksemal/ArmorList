@@ -23,13 +23,15 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
     // observe list of armor
     private val _armorList = MutableLiveData<List<Armor>>()
     val armorList: LiveData<List<Armor>> = _armorList
-    fun getArmorListFromAPI() = viewModelScope.launch(Dispatchers.IO) {
+    fun getArmorListFromAPI() {
         Log.i(LOG_TAG, "Fetching from API...")
-        _loading.postValue(true)
-        val apiResult = repository.getArmorList()
-        if (apiResult.isSuccessful) {
-            _armorList.postValue(apiResult.body())
-            _loading.postValue(false)
+        _loading.value = true
+        viewModelScope.launch(Dispatchers.IO) {
+            val apiResult = repository.getArmorList()
+            if (apiResult.isSuccessful) {
+                _armorList.postValue(apiResult.body())
+                _loading.postValue(false)
+            }
         }
     }
 
