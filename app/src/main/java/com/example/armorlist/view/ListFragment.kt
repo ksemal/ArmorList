@@ -57,7 +57,11 @@ class ListFragment : Fragment() {
                 state: RecyclerView.State
             ) {
                 super.getItemOffsets(outRect, view, parent, state)
-                outRect.bottom =
+                outRect.top =
+                    requireContext().resources.getDimensionPixelSize(R.dimen.item_space)
+                outRect.right =
+                    requireContext().resources.getDimensionPixelSize(R.dimen.item_space)
+                outRect.left =
                     requireContext().resources.getDimensionPixelSize(R.dimen.item_space)
             }
         })

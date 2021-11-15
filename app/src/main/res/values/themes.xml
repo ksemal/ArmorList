@@ -29,6 +29,7 @@
         <item name="android:background">@drawable/text_view_bg</item>
         <item name="android:gravity">center_vertical|center</item>
         <item name="android:textColor">@color/white</item>
+        <item name="android:visibility">gone</item>
     </style>
 
     <style name="label_style">
