@@ -1,9 +1,11 @@
 package com.example.armorlist.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.armorlist.LOG_TAG
 import com.example.armorlist.data.model.Armor
 import com.example.armorlist.data.repository.Repository
 import kotlinx.coroutines.Dispatchers
@@ -22,6 +24,7 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
     private val _armorList = MutableLiveData<List<Armor>>()
     val armorList: LiveData<List<Armor>> = _armorList
     fun getArmorListFromAPI() = viewModelScope.launch(Dispatchers.IO) {
+        Log.i(LOG_TAG, "Fetching from API...")
         _loading.postValue(true)
         val apiResult = repository.getArmorList()
         if (apiResult.isSuccessful) {
