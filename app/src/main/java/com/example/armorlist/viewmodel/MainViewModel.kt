@@ -91,6 +91,10 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
         _armorList.value = _originalArmorList.value
     }
 
+    fun setSelectedArmorItem(armorItem: Armor) {
+
+    }
+
 
     // observe loading state to show/hide recycler view
     private val _loading = MutableLiveData<Boolean>()

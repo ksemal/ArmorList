@@ -10,6 +10,15 @@
         android:name="com.example.armorlist.view.ListFragment"
         android:label="list_fragment"
         tools:layout="@layout/list_fragment" >
+        <action
+            android:id="@+id/action_listFragment_to_itemDetailsFragment"
+            app:destination="@id/itemDetailsFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/itemDetailsFragment"
+        android:name="com.example.armorlist.view.ItemDetailsFragment"
+        android:label="item_details_fragment"
+        tools:layout="@layout/fragment_item_details" />
 
 </navigation>

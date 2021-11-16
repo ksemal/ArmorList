@@ -3,6 +3,8 @@ package com.example.armorlist.view
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation.findNavController
+import com.example.armorlist.R
 import com.example.armorlist.data.repository.Repository
 import com.example.armorlist.databinding.MainActivityBinding
 import com.example.armorlist.network.RetrofitService
@@ -24,5 +26,12 @@ class MainActivity : AppCompatActivity() {
         viewModel.title.observe(this, {
             supportActionBar?.title = it
         })
+    }
+
+    // back button navigation
+    override fun onSupportNavigateUp(): Boolean {
+        findNavController(this, R.id.fragment)
+            .navigateUp()
+        return super.onSupportNavigateUp()
     }
 }

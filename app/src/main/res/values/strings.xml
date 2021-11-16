@@ -5,4 +5,6 @@
     <string name="rank_label_text">rank:</string>
     <string name="defense_label_text">base defense:</string>
     <string name="slot_label_text"># of decoration slots:</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

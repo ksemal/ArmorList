@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.armorlist.R
@@ -23,6 +24,9 @@ class ListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        if (activity is MainActivity) {
+            (activity as MainActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        }
         return inflater.inflate(R.layout.list_fragment, container, false)
     }
 
@@ -95,6 +99,10 @@ class ListFragment : Fragment() {
                     requireContext().resources.getDimensionPixelSize(R.dimen.item_space)
             }
         })
+        rvAdapter.setOnItemClickListener { armorItem ->
+            viewModel.setSelectedArmorItem(armorItem)
+             findNavController().navigate(R.id.action_listFragment_to_itemDetailsFragment)
+        }
         binding.rv.adapter = rvAdapter
     }
 
