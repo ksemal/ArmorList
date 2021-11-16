@@ -91,8 +91,12 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
         _armorList.value = _originalArmorList.value
     }
 
-    fun setSelectedArmorItem(armorItem: Armor) {
 
+    // save selected armor
+    private val _selectedArmor = MutableLiveData<Armor>()
+    val selectedArmor: LiveData<Armor> = _selectedArmor
+    fun setSelectedArmorItem(armorItem: Armor) {
+        _selectedArmor.value = armorItem
     }
 
 

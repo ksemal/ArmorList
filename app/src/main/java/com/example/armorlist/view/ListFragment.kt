@@ -99,9 +99,11 @@ class ListFragment : Fragment() {
                     requireContext().resources.getDimensionPixelSize(R.dimen.item_space)
             }
         })
+
+        // navigate to details fragment
         rvAdapter.setOnItemClickListener { armorItem ->
             viewModel.setSelectedArmorItem(armorItem)
-             findNavController().navigate(R.id.action_listFragment_to_itemDetailsFragment)
+            findNavController().navigate(R.id.action_listFragment_to_itemDetailsFragment)
         }
         binding.rv.adapter = rvAdapter
     }
