@@ -6,4 +6,17 @@
     <string name="defense_label_text">base defense:</string>
     <string name="slot_label_text"># of decoration slots:</string>
     <string name="item_details_fragment_label">Armor Details</string>
+    <string name="item_details_name">Name: %1$s</string>
+    <string name="item_details_type">Type: %1$s</string>
+    <string name="item_details_rank">Rank: %1$s</string>
+    <string name="item_details_rarity">Rarity: %1$s</string>
+    <string name="item_details_base_defense">Base defense: %1$s</string>
+    <string name="item_details_max_defense">Max defense: %1$s</string>
+    <string name="item_details_augmented_defense">Augmented defense: %1$s</string>
+    <string name="item_details_resistance_fire">Fire resistance: %1$s</string>
+    <string name="item_details_resistance_water">Water resistance: %1$s</string>
+    <string name="item_details_resistance_ice">Ice resistance: %1$s</string>
+    <string name="item_details_resistance_thunder">Thunder resistance: %1$s</string>
+    <string name="item_details_resistance_dragon">Dragon resistance: %1$s</string>
+    <string name="item_details_armor_set">DArmor Set: %1$s</string>
 </resources>

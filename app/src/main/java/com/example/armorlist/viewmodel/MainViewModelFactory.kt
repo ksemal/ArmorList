@@ -11,12 +11,4 @@ class MainViewModelFactory(private val repository: Repository) : ViewModelProvid
             repository
         ) as T
     }
-
-//    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-//        return if (modelClass.isAssignableFrom(MainViewModelFactory::class.java)) {
-//            MainViewModel(this.repository) as T
-//        } else {
-//            throw IllegalArgumentException("ViewModel Not Found")
-//        }
-//    }
 }
